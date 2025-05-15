@@ -14,6 +14,9 @@ public:
     int getId(){
         return id_;
     }
+    void cleanGroup(){
+        inGroupId_ = 0;
+    }
     int getGroupId(){
         return inGroupId_;
     }
@@ -44,12 +47,8 @@ public:
         }
     }
     void addUserToGroup(shared_ptr<User>& us);
-    vector<int> getIdsUsersOfGroup(){
-        vector<int> vec;
-        for (auto& elem: usersOfGroup){
-            vec.push_back(elem->getId());
-        }
-        return vec;
+    vector<shared_ptr<User>> vectorOfUsers(){
+        return usersOfGroup;
     }
     void printUsersOfGroup(){
         cout << "Пользователи группы " << id_ << ": ";
@@ -101,8 +100,8 @@ void Group::addUserToGroup(shared_ptr<User>& us){
 }
 
 void createGroup(int id){
-    for (int i = 0; i < allGroups.size(); i++){
-        if (allGroups[i]->getId() == id){
+    for (auto& elem : allGroups){
+        if (elem->getId() == id){
             throw logic_error("Уже существует группа с таким ID");
             return;
         }
@@ -114,8 +113,8 @@ void createGroup(int id){
 }
 
 void createUser(int id){
-    for (int i = 0; i < allUsers.size(); i++){
-        if (allUsers[i]->getId() == id){
+    for (auto& elem : allUsers){
+        if (elem->getId() == id){
             throw logic_error("Уже существует пользователь с таким ID");
             return;
         } 
@@ -136,22 +135,17 @@ void createUser(int id, int grId){
             return;
         }
     }
-    bool groupExists = false;
-    int groupIndex;
-    for (int i = 0; i < allGroups.size(); i++){
-        if (allGroups[i]->getId() == grId){
-            groupExists = true;
-            groupIndex = i;
+    for (auto& elem : allGroups){
+        if (elem->getId() == grId){
+            shared_ptr<User>&& newUs = make_shared<User>(id);
+            elem->addUserToGroup(newUs);
+            allUsers.push_back(move(newUs));
+            cout << "Создан пользователь с ID " << id << endl;
+            return;
         }
     }
-    if (!groupExists){
         throw logic_error("");
         return;
-    }
-    shared_ptr<User>&& newUs = make_shared<User>(id);
-    allGroups[groupIndex]->addUserToGroup(newUs);
-    allUsers.push_back(move(newUs));
-    cout << "Создан пользователь с ID " << id << endl;
 }
 
 void getUser(int id){
@@ -187,43 +181,53 @@ void getGroup(int id){
     }
 }
 
-void deleteUserFromAllUsers(int id){
-    bool exists = false;
-    for (int i = 0; (i < allUsers.size()) && exists == false ; i++){
-        if (allUsers[i]->getId() == id){
-            exists = true;
-            int groupId = allUsers[i]->getGroupId();
+void deleteUser(int id){
+    for (auto it = allUsers.begin(); it != allUsers.end() ; ++it){
+        if ((*it)->getId() == id){
+            int groupId = (*it)->getGroupId();
             for (auto &elem: allGroups){
                 if (elem -> getId() == groupId){
                     elem->deleteUserFromGroup(id);
                 }
             }
-            allUsers.erase(allUsers.begin()+i);
+            allUsers.erase(it);
             cout << "Пользователь " << id << " удалён" << endl;
+            return;
         }
     }
-    if (!exists){
-        cout << "Пользователь с таким ID не найден" << endl;
-    }
+    cout << "Пользователь с таким ID не найден" << endl;
+
 }
 
 
-void deleteGroupFromAllGroups(int id){
-    bool exists = false;
-    for (int i = 0; (i < allGroups.size()) && exists == false ; i++){
-        if (allGroups[i]->getId() == id){
-            exists = true;
-            auto usersOfGroup = allGroups[i]->getIdsUsersOfGroup();
-            for (auto elem: usersOfGroup){
-                deleteUserFromAllUsers(elem);
+void deleteGroup(int id){
+    for (auto it = allGroups.begin(); it != allGroups.end(); ++it){
+        if ((*it)->getId() == id){
+            vector<shared_ptr<User>> groupUsers = (*it)->vectorOfUsers();
+            for (auto& elem : groupUsers){
+                elem->cleanGroup();
             }
-            allGroups.erase(allGroups.begin()+i);
+            allGroups.erase(it);
             cout << "Группа " << id << " удалена" << endl;
+            return;
         }
     }
-    if (!exists){
-        cout << "Группа с таким ID не найдена" << endl;
+    cout << "Группа с таким ID не найдена" << endl;
+}
+
+void addToGroup(int usId, int grId){
+    for (auto& group : allGroups){
+        if (group ->getId() == grId){
+            for (auto& user : allUsers){
+                if(user->getId() == usId){
+                    group->addUserToGroup(user);
+                    return;
+                }
+            }
+            cout << "Пользователь с таким ID не найден" << endl;
+        }
     }
+    cout << "Группа с таким ID не найдена" << endl;
 }
 
 vector<string> splitBySpaces(string& line){
@@ -261,7 +265,9 @@ int main(){
             "createGroup {groupId}\n" <<
             "deleteGroup {groupId}\n" <<
             "allGroups\n"<<
-            "getGroup {userId}" << endl;
+            "getGroup {userId}" <<
+            "addToGroup {userId} {groupId}" <<
+            "exit"<< endl;
         }
         else if (words[0] == "createUser"){
             if (words.size() == 1 || words.size() > 3){
@@ -269,9 +275,17 @@ int main(){
                 continue;
             }
             int userId = stoi(words[1]);
+            if (userId < 1){
+                cout << "ID должно быть больше 0" << endl;
+                continue;
+            }
             try{
                 if (words.size() == 3){
                     int groupId = stoi(words[2]);
+                    if (groupId < 1){
+                        cout << "ID должно быть больше 0" << endl;
+                        continue;
+                    }
                     try{createUser(userId, groupId);}
                     catch(logic_error){
                         cout << "Нет группы с таким ID" << endl;
@@ -292,7 +306,7 @@ int main(){
                 continue;
             }
             int userId = stoi(words[1]);
-            deleteUserFromAllUsers(userId);
+            deleteUser(userId);
             // cout << allUsers[0].use_count() << endl;
         }
         else if (words[0] == "allUsers"){
@@ -316,6 +330,10 @@ int main(){
                 continue;
             }
             int groupId = stoi(words[1]);
+            if (groupId < 1){
+                cout << "ID должно быть больше 1" << endl;
+                continue;
+            }
             try{createGroup(groupId);}
             catch(logic_error){
                 cout << "Уже существует группа с таким ID" << endl;
@@ -327,7 +345,7 @@ int main(){
                 continue;
             }
             int groupId = stoi(words[1]);
-            deleteGroupFromAllGroups(groupId);
+            deleteGroup(groupId);
         }
         else if (words[0] == "allGroups"){
             if (words.size() > 1){
@@ -344,6 +362,15 @@ int main(){
             int groupId = stoi(words[1]);
             getGroup(groupId);
         }
+        else if (words[0] == "addToGroup"){
+            if (words.size() > 3 || words.size() == 1){
+                cout << "<Use man>" << endl;
+                continue;
+            }
+            int userId = stoi(words[1]);
+            int groupId = stoi(words[2]);
+            addToGroup(userId, groupId);
+        }
         else if (words[0] == "exit"){
             break;
         }
@@ -353,3 +380,5 @@ int main(){
         cout << "> ";
     }
 }
+
+// сделать чтобы при удалении группы пользователь не удалялся
