@@ -1,0 +1,4 @@
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/build/CMakeFiles/typeList.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/build/CMakeFiles/main.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/build/CMakeFiles/edit_cache.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/build/CMakeFiles/rebuild_cache.dir

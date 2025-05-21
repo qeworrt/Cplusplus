@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/build",
+  "command": "/usr/bin/c++  -I\"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2\" -g -o CMakeFiles/typeList.dir/typeList.cpp.o -c \"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/typeList.cpp\"",
+  "file": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/typeList.cpp"
+},
+{
+  "directory": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/build",
+  "command": "/usr/bin/c++  -I\"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2\" -g -o CMakeFiles/main.dir/main.cpp.o -c \"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/main.cpp\"",
+  "file": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/main.cpp"
+}
+]

@@ -1,0 +1,4 @@
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/out/build/GCC 11.4.0 x86_64-linux-gnu/CMakeFiles/typeList.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/out/build/GCC 11.4.0 x86_64-linux-gnu/CMakeFiles/main.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/out/build/GCC 11.4.0 x86_64-linux-gnu/CMakeFiles/edit_cache.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 2/out/build/GCC 11.4.0 x86_64-linux-gnu/CMakeFiles/rebuild_cache.dir
