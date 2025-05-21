@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmixin.a CMakeFiles/mixin.dir/mixins.cpp.o
+/usr/bin/ranlib libmixin.a

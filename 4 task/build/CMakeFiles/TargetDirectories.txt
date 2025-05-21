@@ -1,0 +1,4 @@
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/4 task/build/CMakeFiles/mixin.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/4 task/build/CMakeFiles/main.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/4 task/build/CMakeFiles/edit_cache.dir
+/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/4 task/build/CMakeFiles/rebuild_cache.dir
