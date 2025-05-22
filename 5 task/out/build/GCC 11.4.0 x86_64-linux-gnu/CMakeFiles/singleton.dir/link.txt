@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsingleton.a CMakeFiles/singleton.dir/singleton.cpp.o
+/usr/bin/ranlib libsingleton.a

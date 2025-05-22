@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/builder_example.dir/main.cpp.o -c \"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/main.cpp\"",
+  "file": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/main.cpp"
+},
+{
+  "directory": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/builder_example.dir/CheckPoint.cpp.o -c \"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/CheckPoint.cpp\"",
+  "file": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/CheckPoint.cpp"
+},
+{
+  "directory": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/builder_example.dir/Builders.cpp.o -c \"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/Builders.cpp\"",
+  "file": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/Builders.cpp"
+},
+{
+  "directory": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/builder_example.dir/Processor.cpp.o -c \"/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/Processor.cpp\"",
+  "file": "/home/qeworrt/Desktop/Programming/2 course/prodv_c++/HW/Cplusplus/task 6/Processor.cpp"
+}
+]
